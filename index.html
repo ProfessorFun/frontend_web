@@ -14,6 +14,7 @@
         <br />
         <b>尚未註冊?</b>
         <input type="button" value="註冊"  id="reg-start">
+        <b id="reg-success" style="display:none">註冊成功，請於上方列進行登入</b>
         </fieldset>
       </form>
 </div>
@@ -24,11 +25,14 @@
         <legend class="Center">註冊</legend>
         <label>帳號:<input type="text" name="reg-account" placeholder="請輸入帳號"/></label>
         <br />
-        <label>密碼:<input type="password" name="reg-password" placeholder="請輸入密碼" /></label>
+        <label>密碼:<input type="password" id="reg-password-1" placeholder="請輸入密碼" /></label>
+        <br />
+        <label>請再次輸入密碼:<input type="password" id="reg-password-2" placeholder="請輸入密碼" /></label>
         <br />
         <label>產品編號:<input type="text" name="reg-productid" placeholder="請輸入產品編號" /></label>
         <br />
-        <input class="reg-in" type="submit" value="送出" id="reg-done" />
+        <input class="reg-in" type="button" value="送出" id="reg-done" onclick="reg_event()" />
+        <b id="pswd-wrong" style="display:none">兩次密碼輸入不同，請檢查後再試一次</b>
         </fieldset>
       </form>
 </div>
@@ -53,14 +57,12 @@
 
     const otp_array = ["809431","368719","345164","785357", "888447","876849","096779"];
 
+    
+
     window.onload = function(){
         document.getElementById("reg-start").onclick = function(){
             document.getElementById("register-block").style.display = "block";
-        }
-
-        document.getElementById("reg-done").onclick = function(){
-            document.getElementById("register-block").style.display = "none";
-        }
+        }        
 
         document.getElementById("login-done").onclick = function(){
             document.getElementById("otp-generate-block").style.display = "block";
@@ -69,6 +71,19 @@
             document.getElementById("customer-name").textContent=content.value;
         }
 
+    }
+
+    function reg_event(){
+        const pswd_tst1 = document.getElementById("reg-password-1").value;
+        const pswd_tst2 = document.getElementById("reg-password-2").value;
+        console.log(pswd_tst1)
+        console.log(pswd_tst2)
+            if (pswd_tst1 == pswd_tst2){
+                document.getElementById("register-block").style.display = "none";
+                document.getElementById("reg-success").style.display = "block";
+            }else{
+                document.getElementById("pswd-wrong").style.display = "block";
+            }
     }
 
     function otp_generate_event()
