@@ -47,7 +47,7 @@
             30
           </div>
 
-        <input type="button" value="產生" onclick="otp_generate_event()">        
+        <input type="button" value="產生" onclick="otp_generate_event()">
     </fieldset>
 </div>
 
@@ -98,8 +98,7 @@
 <script type="text/javascript">
 
     const otp_array = ["809431","368719","345164","785357", "888447","876849","096779"];
-
-    
+    const other_otp_array = ["548012","894531","159467","754831"]
 
     window.onload = function(){
         document.getElementById("reg-start").onclick = function(){
@@ -139,22 +138,43 @@
 
     function otp_generate_event()
      {
-         var index = Math.floor((Math.random()*otp_array.length));
-         console.log(otp_array[index])
-         var tmp = otp_array[index];
-         document.getElementById("otp-line").innerHTML=tmp;
-         /*timer*/
-         document.getElementById("timer").style.display = "block";
-         var timer = document.querySelector("#timer");
-         var number = 30;
-         setInterval(function(){
-            number -- ;
-            if(number <= 0 ){
-                number = 0;
-            }            
+        const login_account = document.getElementById("account-name").value;
+        const child_account = "406410554";
+        if (login_account == child_account){
+            var index = Math.floor((Math.random()*other_otp_array.length));
+            console.log(other_otp_array[index])
+            var tmp = other_otp_array[index];
+            document.getElementById("otp-line").innerHTML=tmp;
+            /*timer*/
+            document.getElementById("timer").style.display = "block";
+            var timer = document.querySelector("#timer");
+            var number = 30;
+            setInterval(function(){
+                number -- ;
+                if(number <= 0 ){
+                    number = 0;
+                }            
             timer.innerText = number + 0 }, 1000);
-        number = 30;
-        document.getElementById("timer").innerHTML=number;
+            number = 30;
+            document.getElementById("timer").innerHTML=number;
+        }else{
+            var index = Math.floor((Math.random()*otp_array.length));
+            console.log(otp_array[index])
+            var tmp = otp_array[index];
+            document.getElementById("otp-line").innerHTML=tmp;
+            /*timer*/
+            document.getElementById("timer").style.display = "block";
+            var timer = document.querySelector("#timer");
+            var number = 30;
+             setInterval(function(){
+                number -- ;
+                if(number <= 0 ){
+                    number = 0;
+                }            
+            timer.innerText = number + 0 }, 1000);
+            number = 30;
+            document.getElementById("timer").innerHTML=number;            
+        }
      }
 
 </script>
