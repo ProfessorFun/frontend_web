@@ -57,7 +57,7 @@
         <table>
             <tr>
               <th>成員</th>
-              <th>授權等級</th>
+              <th>授權</th>
             </tr>
             <tr>
               <td>610410226</td>
@@ -71,6 +71,7 @@
                     <option>C</option>
                 </select>
               </td>
+              <td><input type="button" value="刪除" ></td>
             </tr>
             <tr>
               <td>406410554</td>
@@ -80,8 +81,24 @@
                     <option>B</option>
                 </select>
               </td>
+              <td><input type="button" value="刪除" ></td>
             </tr>
-          </table>
+        </table>
+        <div id="del-block" style="display:block;">
+            <table>
+            <tr>
+                <td>610456789</td>
+                <td>
+                  <select>
+                      <option>C</option>
+                      <option>B</option>
+                  </select>
+                </td>
+                <td><input type="button" value="刪除" onclick="del_event()"></td>
+            </tr>
+            </table>
+        </div>
+          
           <b>註:A級成員為管理員，不可變動，權限最高無任何限制</b>
           <br/>
           <b>B級成員:晚上12點後禁止</b>
@@ -104,7 +121,10 @@
         document.getElementById("reg-start").onclick = function(){
             document.getElementById("register-block").style.display = "block";
         }
+    }
 
+    function del_event(){
+        document.getElementById("del-block").style.display = "none";
     }
 
     function login_event(){
