@@ -9,7 +9,7 @@
         <br />
         <label>密碼:<input type="password" name="password" placeholder="請輸入密碼" /></label>
         <br />
-        <input class="log-in" type="button" value="送出" id="login-done">
+        <input class="log-in" type="button" value="送出" id="login-done" onclick="login_event()">
         <br />
         <br />
         <b>尚未註冊?</b>
@@ -51,6 +51,48 @@
     </fieldset>
 </div>
 
+<div id="member-manage" style="display:none;">
+    <fieldset class="login">
+        <legend class="Center">成員管理(僅管理員可見)</legend>
+        <table>
+            <tr>
+              <th>成員</th>
+              <th>授權等級</th>
+            </tr>
+            <tr>
+              <td>610410226</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>johnny</td>
+              <td>
+                <select>
+                    <option>C</option>
+                    <option>B</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>406410554</td>
+              <td>
+                <select>
+                    <option>C</option>
+                    <option>B</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <b>註:A級成員為管理員，不可變動，權限最高無任何限制</b>
+          <br/>
+          <b>B級成員:晚上12點後禁止</b>
+          <br/>
+          <b>C級成員:晚上8點後禁止</b>
+          <br/>
+          <input type="button" value="確認修改">
+
+    </fieldset>
+</div>
+
 
 
 <script type="text/javascript">
@@ -62,15 +104,24 @@
     window.onload = function(){
         document.getElementById("reg-start").onclick = function(){
             document.getElementById("register-block").style.display = "block";
-        }        
-
-        document.getElementById("login-done").onclick = function(){
-            document.getElementById("otp-generate-block").style.display = "block";
-            document.getElementById("login-block").style.display = "none";
-            var content = document.getElementById("account-name");
-            document.getElementById("customer-name").textContent=content.value;
         }
 
+    }
+
+    function login_event(){
+        document.getElementById("otp-generate-block").style.display = "block";
+        document.getElementById("login-block").style.display = "none";
+        var content = document.getElementById("account-name");
+        document.getElementById("customer-name").textContent=content.value;
+
+        const login_account = document.getElementById("account-name").value;
+        const parent_account = "610410226";
+        console.log(login_account)
+        console.log(parent_account)
+        if (login_account == parent_account){
+                console.log("good")
+                document.getElementById("member-manage").style.display = "block";
+        }
     }
 
     function reg_event(){
